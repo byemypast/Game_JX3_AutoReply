@@ -113,7 +113,7 @@ def RealTimeUpdateTieba():
 				core.settings.set_value('TIEBA_SHIDA_UPDATE',todayymd)
 			except:
 				debug("******REALTIME_TIEBA_UPDATE : ERROR",1)
-	debug("贴吧十大实时更新结束")
+			debug("贴吧十大实时更新结束")
 
 def InitUpdateTieba():
 	debug("初始化贴吧十大 启动",2)

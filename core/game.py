@@ -18,14 +18,14 @@ TotalServiceTime = 0
 
 def record_user(player_id,msg):
 	f = open(core.settings.recordname,'a')
-	f.write(time.ctime()+","+player_id+","+msg)
+	f.write(time.ctime()+","+player_id+","+msg+"\n")
 	f.close()
 
 def get_usertype(player_id):
 	if player_id in VIPLevel:
-		if player_id[VIPLevel]==-1:
+		if VIPLevel[player_id]==-1:
 			return "黑名单"
-		elif player_id[VIPLevel]==1:
+		elif VIPLevel[player_id]==1:
 			return "VIP"
 	else:
 		#普通用户
@@ -221,7 +221,7 @@ def APP_TIEBA_TOP10(player_id,state,msg):
 	top100_2 = f.readlines()
 	f.close()
 		
-	if (not player_id in VIPLevel)and(core.settings.TIEBA_TOP100_TONONVIP = 0):
+	if (not player_id in VIPLevel)and(core.settings.TIEBA_TOP100_TONONVIP == 0):
 		#非VIP,且不对所有人开放百大
 		strcache = [
 		"今日（"+TIEBA_SHIDA_UPDATE+"）十大：",
