@@ -1,6 +1,6 @@
 import datetime
 
-VERSION = 0.3
+VERSION = 0.31
 STARTTIME = datetime.datetime.now()
 debugname = "debug.txt"
 TIEBA_UPDATE_FORCE = 0

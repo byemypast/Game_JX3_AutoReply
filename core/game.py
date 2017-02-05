@@ -298,7 +298,7 @@ def response(state,player_id,msg):
 			APP_ToTUTU(player_id)
 		elif msg=="2":
 			PlayerState[player_id] = 200
-			APP_TIEBA_TOP10(player_id,state,msg)
+			APP_TIEBA_TOP10(player_id,200,msg)
 		elif (msg=='4')or(msg=='5'):
 			APP_working(player_id)
 		elif msg=="3":
