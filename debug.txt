@@ -5777,3 +5777,203 @@ Sun Feb  5 18:01:07 2017 : SendStr( 冬风扫落叶 ): 9---【树洞】三年感情比不过一张
 Sun Feb  5 18:01:08 2017 : SendStr( 冬风扫落叶 ): 10---这个月30号随机抽个人送一代黄---271---梦魇弦羽---12:34---4967069088
 
 Sun Feb  5 18:01:10 2017 : SendStr( 冬风扫落叶 ): 第 1 / 10 页 【-1】上一页 【1】下一页 【x】退出
+Mon Feb  6 00:54:21 2017 : 初始化贴吧十大 启动
+Mon Feb  6 00:54:21 2017 : 未检测到今日十大
+Mon Feb  6 00:54:21 2017 : 启动 贴吧爬虫核心模块 参数：剑网三 17-02-06
+Mon Feb  6 00:54:22 2017 : 1 / 60
+Mon Feb  6 00:54:22 2017 : 2 / 60
+Mon Feb  6 00:54:23 2017 : 3 / 60
+Mon Feb  6 00:54:24 2017 : 4 / 60
+Mon Feb  6 00:54:25 2017 : 5 / 60
+Mon Feb  6 00:54:26 2017 : 6 / 60
+Mon Feb  6 00:54:26 2017 : 7 / 60
+Mon Feb  6 00:54:27 2017 : 8 / 60
+Mon Feb  6 00:54:28 2017 : 9 / 60
+Mon Feb  6 00:54:29 2017 : 10 / 60
+Mon Feb  6 00:54:29 2017 : 11 / 60
+Mon Feb  6 00:54:30 2017 : 12 / 60
+Mon Feb  6 00:54:31 2017 : 13 / 60
+Mon Feb  6 00:54:33 2017 : 14 / 60
+Mon Feb  6 00:54:34 2017 : 15 / 60
+Mon Feb  6 00:54:35 2017 : 16 / 60
+Mon Feb  6 00:54:36 2017 : 17 / 60
+Mon Feb  6 00:54:37 2017 : 18 / 60
+Mon Feb  6 00:54:38 2017 : 19 / 60
+Mon Feb  6 00:54:39 2017 : 20 / 60
+Mon Feb  6 00:54:40 2017 : 21 / 60
+Mon Feb  6 00:54:41 2017 : 22 / 60
+Mon Feb  6 00:54:42 2017 : 23 / 60
+Mon Feb  6 00:54:43 2017 : 24 / 60
+Mon Feb  6 00:54:43 2017 : 25 / 60
+Mon Feb  6 00:54:44 2017 : 26 / 60
+Mon Feb  6 00:54:45 2017 : 27 / 60
+Mon Feb  6 00:54:46 2017 : 28 / 60
+Mon Feb  6 00:54:47 2017 : 29 / 60
+Mon Feb  6 00:54:48 2017 : 30 / 60
+Mon Feb  6 00:54:49 2017 : 31 / 60
+Mon Feb  6 00:54:50 2017 : 32 / 60
+Mon Feb  6 00:54:51 2017 : 33 / 60
+Mon Feb  6 00:54:52 2017 : 34 / 60
+Mon Feb  6 00:54:52 2017 : 35 / 60
+Mon Feb  6 00:54:53 2017 : 36 / 60
+Mon Feb  6 00:54:54 2017 : 37 / 60
+Mon Feb  6 00:54:55 2017 : 38 / 60
+Mon Feb  6 00:54:56 2017 : 39 / 60
+Mon Feb  6 00:54:57 2017 : 40 / 60
+Mon Feb  6 00:54:58 2017 : 41 / 60
+Mon Feb  6 00:54:59 2017 : 42 / 60
+Mon Feb  6 00:55:00 2017 : 43 / 60
+Mon Feb  6 00:55:01 2017 : 44 / 60
+Mon Feb  6 00:55:02 2017 : 45 / 60
+Mon Feb  6 00:55:03 2017 : 46 / 60
+Mon Feb  6 00:55:04 2017 : 47 / 60
+Mon Feb  6 00:55:05 2017 : 48 / 60
+Mon Feb  6 00:55:06 2017 : 49 / 60
+Mon Feb  6 00:55:07 2017 : 50 / 60
+Mon Feb  6 00:55:08 2017 : 51 / 60
+Mon Feb  6 00:55:09 2017 : 52 / 60
+Mon Feb  6 00:55:10 2017 : 53 / 60
+Mon Feb  6 00:55:11 2017 : 54 / 60
+Mon Feb  6 00:55:12 2017 : 55 / 60
+Mon Feb  6 00:55:13 2017 : 56 / 60
+Mon Feb  6 00:55:14 2017 : 57 / 60
+Mon Feb  6 00:55:15 2017 : 58 / 60
+Mon Feb  6 00:55:16 2017 : 59 / 60
+Mon Feb  6 00:55:17 2017 : 60 / 60
+Mon Feb  6 00:55:17 2017 : 前60页中共有：1828 超过50回复的帖子
+Mon Feb  6 00:55:17 2017 : 贴吧爬虫核心模块 结束
+Mon Feb  6 00:55:18 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:05:17 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:05:17 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:05:17 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:05:29 2017 : GetMessageLine---->**
+Mon Feb  6 01:05:29 2017 : 1486314336###全体浩气盟###**
+Mon Feb  6 01:05:29 2017 : GetMessageLine---->**
+Mon Feb  6 01:05:29 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:05:29 2017 : ***database_query error: name 'sqlite3' is not defined, 使用代替方式(userinfo.py)
+Mon Feb  6 01:06:14 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:06:14 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:06:14 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:06:20 2017 : GetMessageLine---->ces
+Mon Feb  6 01:06:20 2017 : 1486314387###全体浩气盟###ces
+Mon Feb  6 01:06:20 2017 : GetMessageLine---->ces
+Mon Feb  6 01:06:20 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:06:20 2017 : ***database_query error: no such table: userdata, 使用代替方式(userinfo.py)
+Mon Feb  6 01:07:00 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:07:00 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:07:00 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:07:08 2017 : GetMessageLine---->ces
+Mon Feb  6 01:07:08 2017 : 1486314435###全体浩气盟###ces
+Mon Feb  6 01:07:08 2017 : GetMessageLine---->ces
+Mon Feb  6 01:07:08 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:07:08 2017 : ***database_query error: no such table: userdata, 使用代替方式(userinfo.py)
+Mon Feb  6 01:10:25 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:10:25 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:10:25 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:10:25 2017 : userinfo组件初始化
+Mon Feb  6 01:10:25 2017 : userinfo组件初始化结束
+Mon Feb  6 01:10:45 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:10:45 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:10:45 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:10:45 2017 : userinfo组件初始化
+Mon Feb  6 01:10:45 2017 : 未找到数据库userdb.db，开始重建数据库
+Mon Feb  6 01:10:45 2017 : 收到建库指令
+Mon Feb  6 01:10:45 2017 : 数据库查询：CREATE TABLE userdata(NAME TEXT PRIMARY KEY, FLOATER_LEFT INT, VIP_LEVEL INT, SCORE REAL, JOB TEXT, REGTIME TEXT);
+Mon Feb  6 01:11:33 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:11:33 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:11:33 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:11:33 2017 : userinfo组件初始化
+Mon Feb  6 01:11:33 2017 : userinfo组件初始化结束
+Mon Feb  6 01:11:42 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:11:42 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:11:42 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:11:42 2017 : userinfo组件初始化
+Mon Feb  6 01:11:42 2017 : 未找到数据库userdb.db，开始重建数据库
+Mon Feb  6 01:11:42 2017 : 收到建库指令
+Mon Feb  6 01:11:42 2017 : 数据库查询：CREATE TABLE userdata(NAME TEXT PRIMARY KEY, FLOATER_LEFT INT, VIP_LEVEL INT, SCORE REAL, JOB TEXT, REGTIME TEXT);
+Mon Feb  6 01:11:44 2017 : 数据库查询结束，返回值：[]
+Mon Feb  6 01:11:44 2017 : 建库成功
+Mon Feb  6 01:11:44 2017 : userinfo组件初始化结束
+Mon Feb  6 01:11:57 2017 : GetMessageLine---->ces
+Mon Feb  6 01:11:57 2017 : 1486314724###全体浩气盟###ces
+Mon Feb  6 01:11:57 2017 : GetMessageLine---->ces
+Mon Feb  6 01:11:57 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:11:57 2017 : 数据库查询结束，返回值：[]
+Mon Feb  6 01:12:29 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:12:29 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:12:29 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:12:29 2017 : userinfo组件初始化
+Mon Feb  6 01:12:29 2017 : userinfo组件初始化结束
+Mon Feb  6 01:12:36 2017 : GetMessageLine---->**
+Mon Feb  6 01:12:36 2017 : 1486314763###全体浩气盟###**
+Mon Feb  6 01:12:36 2017 : GetMessageLine---->**
+Mon Feb  6 01:12:36 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:12:36 2017 : 数据库查询结束，返回值：[]
+Mon Feb  6 01:13:25 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:13:25 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:13:25 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:13:25 2017 : userinfo组件初始化
+Mon Feb  6 01:13:25 2017 : userinfo组件初始化结束
+Mon Feb  6 01:13:35 2017 : ***database_query error: database is locked, 使用代替方式
+Mon Feb  6 01:13:37 2017 : GetMessageLine---->s
+Mon Feb  6 01:13:37 2017 : 1486314824###全体浩气盟###s
+Mon Feb  6 01:13:37 2017 : GetMessageLine---->s
+Mon Feb  6 01:13:37 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:13:37 2017 : 数据库查询结束，返回值：[]
+Mon Feb  6 01:14:02 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:14:02 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:14:02 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:14:02 2017 : userinfo组件初始化
+Mon Feb  6 01:14:02 2017 : userinfo组件初始化结束
+Mon Feb  6 01:14:05 2017 : GetMessageLine---->c
+Mon Feb  6 01:14:05 2017 : 1486314853###全体浩气盟###c
+Mon Feb  6 01:14:05 2017 : GetMessageLine---->c
+Mon Feb  6 01:14:05 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:14:05 2017 : 数据库查询结束，返回值：[]
+Mon Feb  6 01:14:05 2017 : 数据库查询：INSERT INTO userdata(NAME,FLOATER_LEFT,VIP_LEVEL,SCORE,JOB,REGTIME) VALUES ('全体浩气盟',2,3,0,'未知','Mon Feb  6 01:14:05 2017')
+Mon Feb  6 01:14:05 2017 : 数据库查询结束，返回值：[]
+Mon Feb  6 01:14:05 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:14:05 2017 : 数据库查询结束，返回值：[('全体浩气盟', 2, 3, 0.0, '未知', 'Mon Feb  6 01:14:05 2017')]
+Mon Feb  6 01:15:09 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:15:09 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:15:09 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:15:09 2017 : userinfo组件初始化
+Mon Feb  6 01:15:09 2017 : userinfo组件初始化结束
+Mon Feb  6 01:15:13 2017 : GetMessageLine---->c
+Mon Feb  6 01:15:13 2017 : 1486314921###全体浩气盟###c
+Mon Feb  6 01:15:13 2017 : GetMessageLine---->c
+Mon Feb  6 01:15:13 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:15:13 2017 : 数据库查询结束，返回值：[('全体浩气盟', 2, 3, 0.0, '未知', 'Mon Feb  6 01:14:05 2017')]
+Mon Feb  6 01:17:07 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:17:07 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:17:07 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:17:07 2017 : userinfo组件初始化
+Mon Feb  6 01:17:07 2017 : userinfo组件初始化结束
+Mon Feb  6 01:17:12 2017 : GetMessageLine---->c
+Mon Feb  6 01:17:12 2017 : 1486315039###全体浩气盟###c
+Mon Feb  6 01:17:12 2017 : GetMessageLine---->c
+Mon Feb  6 01:17:12 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:17:12 2017 : 数据库查询结束，返回值：[('全体浩气盟', 2, 3, 0.0, '未知', 'Mon Feb  6 01:14:05 2017')]
+Mon Feb  6 01:17:12 2017 : response received. state: 0 全体浩气盟 c
+Mon Feb  6 01:17:12 2017 : SendStr( 全体浩气盟 ): 嘿嘿嘿你好啊~ 全体浩气盟，抓到我啦~
+Mon Feb  6 01:17:58 2017 : 初始化贴吧十大 启动
+Mon Feb  6 01:17:58 2017 : 检测到今日十大，直接使用已生成文件
+Mon Feb  6 01:17:58 2017 : GetTables Return---->['ChatLogIndex', 'ChatLogInfo', 'ChatLog_ee5cdc']
+Mon Feb  6 01:17:58 2017 : userinfo组件初始化
+Mon Feb  6 01:17:58 2017 : 未找到数据库userdb.db，开始重建数据库
+Mon Feb  6 01:17:58 2017 : 收到建库指令
+Mon Feb  6 01:17:58 2017 : 数据库查询：CREATE TABLE userdata(NAME TEXT PRIMARY KEY, FLOATER_LEFT INT, VIP_LEVEL INT, SCORE REAL, JOB TEXT, REGTIME TEXT);
+Mon Feb  6 01:17:58 2017 : 数据库查询结束，返回值：[]
+Mon Feb  6 01:17:58 2017 : 建库成功
+Mon Feb  6 01:17:58 2017 : userinfo组件初始化结束
+Mon Feb  6 01:18:07 2017 : GetMessageLine---->m
+Mon Feb  6 01:18:07 2017 : 1486315094###全体浩气盟###m
+Mon Feb  6 01:18:07 2017 : GetMessageLine---->m
+Mon Feb  6 01:18:07 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:18:07 2017 : 数据库查询结束，返回值：[]
+Mon Feb  6 01:18:07 2017 : 数据库查询：INSERT INTO userdata(NAME,FLOATER_LEFT,VIP_LEVEL,SCORE,JOB,REGTIME) VALUES ('全体浩气盟',2,3,0,'未知','Mon Feb  6 01:18:07 2017')
+Mon Feb  6 01:18:07 2017 : 数据库查询结束，返回值：[]
+Mon Feb  6 01:18:07 2017 : 数据库查询：SELECT * from userdata where NAME = '全体浩气盟'
+Mon Feb  6 01:18:07 2017 : 数据库查询结束，返回值：[('全体浩气盟', 2, 3, 0.0, '未知', 'Mon Feb  6 01:18:07 2017')]
+Mon Feb  6 01:18:07 2017 : response received. state: 0 全体浩气盟 m
+Mon Feb  6 01:18:08 2017 : SendStr( 全体浩气盟 ): 嘿嘿嘿你好啊~ 全体浩气盟，抓到我啦~

@@ -2,12 +2,14 @@
 
 import datetime
 import core.settings
+import core.userinfo
 from core.debug import *
 from send.sendcore import *
 import time
 
 PlayerState = {}
-VIPLevel = {"陈洛晨":1,"十里雾中":1,"春风扫残雪":1,"春风寻常在":1,"完颜阿九打":1}
+
+userdata = {}
 TIEBA_state = {}
 TotalServiceTime = 0
 #0: 第一次对话介绍+主选单列出
@@ -16,26 +18,55 @@ TotalServiceTime = 0
 #100：职业选择APP初始化
 #200：贴吧百大
 
-def record_user(player_id,msg):
-	f = open(core.settings.recordname,'a')
-	f.write(time.ctime()+","+player_id+","+msg+"\n")
-	f.close()
+#使命结束
+#def record_user(player_id,msg):
+#	f = open(core.settings.recordname,'a')
+#	f.write(time.ctime()+","+player_id+","+msg+"\n")
+#	f.close()
 
-def get_usertype(player_id):
-	if player_id in VIPLevel:
-		if VIPLevel[player_id]==-1:
-			return "黑名单"
-		elif VIPLevel[player_id]==1:
-			return "VIP"
+def get_userdata(player_id,retlist):
+	allinfo = retlist
+	dict2d_construct(userdata,player_id,'FLOATER_LEFT',allinfo[0][1]) #等待重构
+	dict2d_construct(userdata,player_id,'VIP_LEVEL',allinfo[0][2])
+	dict2d_construct(userdata,player_id,'SCORE',allinfo[0][3])
+	dict2d_construct(userdata,player_id,'JOB',allinfo[0][4])
+	dict2d_construct(userdata,player_id,'REGTIME',allinfo[0][5])
+
+
+def flash_userdata(player_id):
+	allinfo = core.userinfo.database_getall(player_id)
+	if player_id in userdata:
+		if allinfo==[]:
+			debug("******Database damage in flash_userdata,"+ player_id)
+			return
+		else:
+			get_userdata(player_id,allinfo)
 	else:
-		#普通用户
-		return "首测"
+		if allinfo==[]:
+			core.userinfo.database_newuser(player_id)
+			allinfo = core.userinfo.database_getall(player_id)
+			get_userdata(player_id,allinfo)
+		else:
+			get_userdata(player_id,allinfo)
+			
+			
+def get_usertype(player_id): 
+	vip_value = userdata[player_id]['VIP_LEVEL']
+	if vip_value=='1':
+		return '超级VIP'
+	elif vip_value == '2':
+		return 'VIP'
+	elif vip_value =='3':
+		return '首测'
+	elif vip_value =='-1':
+		return '黑名单'
+	else:
+		return '普通'
 		
 def core_input(player_id,talktime,msg):
-	if player_id in VIPLevel:
-		if VIPLevel[player_id]==-1:
-			sendstr(player_id,"您在黑名单中")
-			return
+	flash_userdata(player_id)
+	if get_usertype(player_id)=='黑名单':
+		return
 	if not player_id in PlayerState:
 		PlayerState[player_id] = 0 #init
 	response(PlayerState[player_id],player_id,msg)
@@ -208,7 +239,6 @@ def APP_ToTUTU(player_id):
 
 def APP_TIEBA_TOP10(player_id,state,msg):
 	debug("进入应用：贴吧十大 "+player_id+" state:"+str(state)+" msg:"+msg)
-	record_user(player_id,msg)
 	global TIEBA_state
 	TIEBA_UPDATE_TO = core.settings.get_value("TIEBA_UPDATE_TO")
 	TIEBA_SHIDA = core.settings.get_value("TIEBA_SHIDA")
@@ -221,7 +251,7 @@ def APP_TIEBA_TOP10(player_id,state,msg):
 	top100_2 = f.readlines()
 	f.close()
 		
-	if (not player_id in VIPLevel)and(core.settings.TIEBA_TOP100_TONONVIP == 0):
+	if (userdata[player_id]['VIP_LEVEL']>2)and(core.settings.TIEBA_TOP100_TONONVIP == 0):
 		#非VIP,且不对所有人开放百大
 		strcache = [
 		"今日（"+TIEBA_SHIDA_UPDATE+"）十大：",
@@ -297,7 +327,7 @@ def response(state,player_id,msg):
 		'4: 漂流瓶(暂未开放，敬请期待)',
 		'5: 小和尚奇侠传(暂未开放，敬请期待)',
 		'6: 入帮/给作者提意见添加更多功能',
-		'7: 本次开机统计']
+		'7: 本次开机统计/我的状态']
 		sendlist(player_id,strcache,1,0.1,0.5)
 		PlayerState[player_id] = 2
 	elif state == 1: #非第一次对话，主选单，msg:随机内容
@@ -309,7 +339,7 @@ def response(state,player_id,msg):
 		'4: 漂流瓶(暂未开放，敬请期待)',
 		'5: 小和尚奇侠传(暂未开放，敬请期待)',
 		'6: 入帮/给作者提意见添加更多功能',
-		'7: 本次开机统计']
+		'7: 本次开机统计/我的状态']
 		sendlist(player_id,strcache,1,0.1,0.5)
 		PlayerState[player_id] = 2
 	elif state == 2: # 选择进入不同应用程序 msg:主选单选择
@@ -329,7 +359,10 @@ def response(state,player_id,msg):
 			PlayerState[player_id] = 1
 		elif msg=="7":
 			dnow = datetime.datetime.now()
-			strcache = '本次程序开始至今，共运行：' + str((dnow-core.settings.STARTTIME).seconds) + "秒，收到查询 " + str(TotalServiceTime) +" 次，共有用户： "+ str(len(PlayerState))+" 个。这是程序的第 "+ str(core.settings.get_value("RESTARTTIME"))+" 次启动。任意键返回主菜单"
+			totalnum = core.userinfo.database_query("SELECT count(*) FROM userdata")[0][0]
+			strcache = '本次程序开始至今，共运行：' + str((dnow-core.settings.STARTTIME).seconds) + "秒，收到查询 " + str(TotalServiceTime) +" 次。数据库中共有用户： "+ str(totalnum)+" 个。这是程序的第 "+ str(core.settings.get_value("RESTARTTIME"))+" 次启动。任意键返回主菜单"
+			sendstr(player_id,strcache)
+			strcache = '[ '+get_usertype(player_id)+" 用户 ] " +player_id+" ，您的注册时间为 "+ userdata[player_id]['REGTIME']
 			sendstr(player_id,strcache)
 			PlayerState[player_id] = 1
 		else:
@@ -341,7 +374,11 @@ def response(state,player_id,msg):
 	elif (int(state>=200)and(int(state)<300)):
 		APP_TIEBA_TOP10(player_id,state,msg)
 		
-		
+def dict2d_construct(thedict, key_a, key_b, val):
+  if key_a in thedict:
+    thedict[key_a].update({key_b: val})
+  else:
+    thedict.update({key_a:{key_b: val}})
 		
 '''
 

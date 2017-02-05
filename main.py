@@ -13,6 +13,7 @@ from core.debug import *
 import tempfile
 import random
 
+import core.userinfo
 import core.settings
 import core.game
 import core.jx3tieba
@@ -136,7 +137,12 @@ def InitUpdateTieba():
 	core.settings.set_value('TIEBA_SHIDA_UPDATE',todayymd)
 	core.settings.set_value('TIEBA_UPDATE_TO',todayymd)
 	
-
+def Init_userinfo():
+	debug("userinfo组件初始化")
+	if not os.path.exists(core.userinfo.dbname):
+		debug("未找到数据库"+core.userinfo.dbname+"，开始重建数据库")
+		core.userinfo.database_buildup()
+	debug("userinfo组件初始化结束")
 
 core.settings.set_value('RESTARTTIME',init_rewritetime())
 InitUpdateTieba()
@@ -146,6 +152,7 @@ dbtables.remove("ChatLogInfo")
 lastmsg = {}
 for table in dbtables:
 	lastmsg[table] = ""
+Init_userinfo()
 while (1):
 	lastmsg = RealTimeGetMSG(dbtables,lastmsg)
 	RealTimeUpdateTieba()
