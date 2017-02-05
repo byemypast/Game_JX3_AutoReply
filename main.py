@@ -95,7 +95,7 @@ def RealTimeGetMSG(dbtables,lastmsg):
 				
 	return newlastmsg
 			
-def RealTimeUpdateTieba(): #未测试
+def RealTimeUpdateTieba(): 
 	timehm = time.strftime("%H-%M")
 	todayymd = time.strftime("%y-%m-%d")
 	if timehm==core.settings.get_value("TIEBA_UPDATETIME"):
@@ -113,6 +113,7 @@ def RealTimeUpdateTieba(): #未测试
 				core.settings.set_value('TIEBA_SHIDA_UPDATE',todayymd)
 			except:
 				debug("******REALTIME_TIEBA_UPDATE : ERROR",1)
+	debug("贴吧十大实时更新结束")
 
 def InitUpdateTieba():
 	debug("初始化贴吧十大 启动",2)
@@ -147,5 +148,6 @@ for table in dbtables:
 	lastmsg[table] = ""
 while (1):
 	lastmsg = RealTimeGetMSG(dbtables,lastmsg)
+	RealTimeUpdateTieba()
 	time.sleep(0.2)
 fd.close()

@@ -4,7 +4,7 @@ import datetime
 import core.settings
 from core.debug import *
 from send.sendcore import *
-
+import time
 
 PlayerState = {}
 VIPLevel = {"陈洛晨":1,"十里雾中":1,"春风扫残雪":1,"春风寻常在":1,"完颜阿九打":1}
@@ -14,6 +14,23 @@ TotalServiceTime = 0
 #1：非第一次对话+主选单列出
 #2：选择主选单
 #100：职业选择APP初始化
+#200：贴吧百大
+
+def record_user(player_id,msg):
+	f = open(core.settings.recordname,'a')
+	f.write(time.ctime()+","+player_id+","+msg)
+	f.close()
+
+def get_usertype(player_id):
+	if player_id in VIPLevel:
+		if player_id[VIPLevel]==-1:
+			return "黑名单"
+		elif player_id[VIPLevel]==1:
+			return "VIP"
+	else:
+		#普通用户
+		return "首测"
+		
 def core_input(player_id,talktime,msg):
 	if player_id in VIPLevel:
 		if VIPLevel[player_id]==-1:
@@ -155,10 +172,10 @@ def APP_professiontest(player_id,state,msg):
 
 
 def APP_ToTUTU(player_id):
-	if (player_id =='十里雾中')or(player_id =='陈洛晨')or(player_id =='春风寻常在'):
+	if (player_id =='十里雾中')or(player_id =='陈洛晨')or(player_id =='春风扫残雪'):
 		dnow = datetime.datetime.now()
 		d0 = datetime.datetime(2017,2,14)
-		d1 = datetime.datetime(2016,5,21)
+		d1 = datetime.datetime(2016,12,10)
 		d2 = datetime.datetime(2016,11,13)
 		d3 = datetime.datetime(2016,8,10)
 		d4 = datetime.datetime(2016,5,21)
@@ -183,13 +200,15 @@ def APP_ToTUTU(player_id):
 		'有一个姑娘~她有一些任性她还有一些~~嚣张~~ #笨猪',
 		'有一个姑娘~她有一些叛逆她还有一些~~疯狂~~ #欣喜',
 		'哦~~是哪个姑娘啊~~哦~~ #噢',
-		'哦~~~~那就是蠢秃秃啊~ #笨猪'
+		'哦~~~~那就是蠢秃秃啊~ #笨猪',
+		'以此纪念2017年和情缘缘蠢秃秃的情人节',
 		'·回复任意键返回主菜单']
 		sendlist(player_id,strcache,1,0.1,0.5)
 	PlayerState[player_id] = 1 #主菜单
 
 def APP_TIEBA_TOP10(player_id,state,msg):
 	debug("进入应用：贴吧十大 "+player_id+" state:"+str(state)+" msg:"+msg)
+	record_user(player_id,msg)
 	global TIEBA_state
 	TIEBA_UPDATE_TO = core.settings.get_value("TIEBA_UPDATE_TO")
 	TIEBA_SHIDA = core.settings.get_value("TIEBA_SHIDA")
@@ -202,8 +221,8 @@ def APP_TIEBA_TOP10(player_id,state,msg):
 	top100_2 = f.readlines()
 	f.close()
 		
-	if not player_id in VIPLevel:
-		#非VIP
+	if (not player_id in VIPLevel)and(core.settings.TIEBA_TOP100_TONONVIP = 0):
+		#非VIP,且不对所有人开放百大
 		strcache = [
 		"今日（"+TIEBA_SHIDA_UPDATE+"）十大：",
 		"(*您目前的权限为 普通用户，可浏览TOP 10)",
@@ -214,14 +233,14 @@ def APP_TIEBA_TOP10(player_id,state,msg):
 		PlayerState[player_id] = 1
 	else:
 		if state == 200:
-			sendstr(player_id,"嘿嘿嘿~你好呀~VIP用户 "+player_id+", 请选择您想查询的类别：【1】今日百大（今日内发帖）；【2】全部百大（今日内回复）")
+			sendstr(player_id,"嘿嘿嘿~你好呀~ "+get_usertype(player_id)+ " 用户 "+player_id+", 请选择您想查询的类别：【1】今日百大（今日内发帖）；【2】全部百大（今日内回复）")
 			PlayerState[player_id] = 201
 			TIEBA_state[player_id] = (0,0) #(文件名序号,页数--页数*10)
 		elif state == 201:
 			if msg =='1':
 				strcache = [
 				"今日（"+TIEBA_SHIDA_UPDATE+"）百大：",
-				"(*您目前的权限为 VIP用户，可浏览TOP 100)",
+				"(*您目前的权限为 "+get_usertype(player_id)+ " 用户，可浏览TOP 100)",
 				"标题--回复数--作者--发帖时间--贴吧地址(kz)"]
 				sendlist(player_id,strcache,0,0,0)
 				sendlist(player_id,top100_2[0:10],0,0,0)
@@ -231,7 +250,7 @@ def APP_TIEBA_TOP10(player_id,state,msg):
 			else:
 				strcache = [
 				"全部（"+TIEBA_SHIDA_UPDATE+"）百大：",
-				"(*您目前的权限为 VIP用户，可浏览TOP 100)",
+				"(*您目前的权限为 "+get_usertype(player_id)+ " 用户，可浏览TOP 100)",
 				"标题--回复数--作者--发帖时间--贴吧地址(kz)"]
 				sendlist(player_id,strcache,0,0,0)
 				sendlist(player_id,top100_1[0:10],0,0,0)
