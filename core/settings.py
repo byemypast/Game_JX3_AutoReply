@@ -3,6 +3,7 @@ import datetime
 VERSION = 0.3
 STARTTIME = datetime.datetime.now()
 debugname = "debug.txt"
+TIEBA_UPDATE_FORCE = 0
 
 var = {}
 var["TIEBA_UPDATE_TO"] = ""
