@@ -13,6 +13,7 @@ from core.debug import *
 import tempfile
 import random
 
+import send.sendapis
 import core.userinfo
 import core.settings
 import core.game
@@ -144,6 +145,10 @@ def Init_userinfo():
 		core.userinfo.database_buildup()
 	debug("userinfo组件初始化结束")
 
+def APP_VIP1_ATTACK():
+	if core.settings.get_value("API_VIP1_ATTACK")==1:
+		send.sendapis.key_press(0x42) #f8
+
 core.settings.set_value('RESTARTTIME',init_rewritetime())
 InitUpdateTieba()
 dbtables = GetTables()
@@ -156,5 +161,6 @@ Init_userinfo()
 while (1):
 	lastmsg = RealTimeGetMSG(dbtables,lastmsg)
 	RealTimeUpdateTieba()
+	APP_VIP1_ATTACK()
 	time.sleep(0.2)
 fd.close()

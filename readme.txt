@@ -8,13 +8,23 @@
 (管理员cmd: bcdedit /set testsigning on)
 
 2. 将main.py中的路径改为茗伊插件【你需要的角色】聊天记录保存的路径
-3. 快捷键设置中取消风云榜快捷键CTRL+V的设置
+   修改settings.py相关设置
+3. 快捷键设置中取消风云榜快捷键CTRL+V的设置，并按照VIP1.py
 4. 茗伊插件聊天记录设置为实时写入数据库
 5. 安装依赖库 rabird.winio, pyperclip
 6. 使用管理员权限运行main.py
-6. 登录2中的角色，保持剑三运行前台
+7. 登录2中的角色，保持剑三运行前台
+8. 设置收信邮箱将自己列为白名单
 
-version 0.5
+version 0.6
+[-]修复BUG：userinfo中setvalue会导致数据库查询错误
+[+]增加功能：漂流瓶
+[+]增加功能：VIP调戏模式
+[+]增加功能：唠嗑模式
+[+]增加模块：邮件发送模块
+[.]主菜单合并为两条消息
+[.]调整主菜单部分逻辑
+version 0.5(rc)
 [+]增加功能：增加profile database模块，为未来漂流瓶、功能服务
 [-]删除功能：单独记录使用用户ID/msg (from 0.4)
 version 0.41

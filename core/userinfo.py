@@ -52,8 +52,9 @@ def database_getvalue(key,name):
 
 def database_setvalue(key,keyto,name):
 	#no try
+	debug("数据库更新： "+"UPDATE userdata SET "+ key +" = "+str(keyto)+" where NAME = '"+ name+"'")
 	conn = sqlite3.connect(dbname)
-	retstr = conn.execute("UPDATE userdata SET "+ key +" = "+str(keyto)+"where NAME = "+ name)
+	retstr = conn.execute("UPDATE userdata SET "+ key +" = "+str(keyto)+" where NAME = '"+ name+"'")
 	conn.commit()
 	conn.close()
 	

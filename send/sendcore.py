@@ -35,7 +35,7 @@ def sendstr(talkto,strs):
 	sendcorekey()
 	
 	
-def sendlist(talkto,lists,pauserandom,pausefrom,pauseto):
+def sendlist(talkto,lists,pauserandom =0 ,pausefrom = 0,pauseto = 0):
 	#pauserandom : 0 for non-random, use pausefrom
 	#              1 for random, from --> to
 	pausetime = 0

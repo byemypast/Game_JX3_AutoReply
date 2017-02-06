@@ -3,6 +3,9 @@
 import datetime
 import core.settings
 import core.userinfo
+import send.sendmail
+import core.app.vip1
+import core.floater
 from core.debug import *
 from send.sendcore import *
 import time
@@ -12,17 +15,20 @@ PlayerState = {}
 userdata = {}
 TIEBA_state = {}
 TotalServiceTime = 0
+TalkingMode = {} #唠嗑模式记录
 #0: 第一次对话介绍+主选单列出
 #1：非第一次对话+主选单列出
 #2：选择主选单
+#3-5：唠嗑模式
 #100：职业选择APP初始化
 #200：贴吧百大
+#300：漂流瓶
+#400：VIP调戏模式
 
-#使命结束
-#def record_user(player_id,msg):
-#	f = open(core.settings.recordname,'a')
-#	f.write(time.ctime()+","+player_id+","+msg+"\n")
-#	f.close()
+def record_user(player_id,msg):
+	f = open(core.settings.recordname,'a')
+	f.write(time.ctime()+","+player_id+","+msg+"\n")
+	f.close()
 
 def get_userdata(player_id,retlist):
 	allinfo = retlist
@@ -51,7 +57,7 @@ def flash_userdata(player_id):
 			
 			
 def get_usertype(player_id): 
-	vip_value = userdata[player_id]['VIP_LEVEL']
+	vip_value = str(userdata[player_id]['VIP_LEVEL'])
 	if vip_value=='1':
 		return '超级VIP'
 	elif vip_value == '2':
@@ -315,31 +321,38 @@ def APP_TIEBA_TOP10(player_id,state,msg):
 def response(state,player_id,msg):
 	debug("response received. state: "+str(state)+" "+player_id+" "+msg,1)
 	global TotalServiceTime 
+	global PlayerState
 	TotalServiceTime += 1
+	VIPChoice = ['VIP用户选项：','vip1: 【VIP】调戏模式']
+	
 	if state == 0: #第一次对话，应介绍本程序，并列出所有的application msg:随机内容
 		strcache = [
 		'嘿嘿嘿你好啊~ ' + player_id+'，抓到我啦~',
 		'我是秃秃聊天机器人，目前版本 '+ str(core.settings.VERSION),
 		'希望能给在无聊的日日日日常中给你一点乐趣和惊喜 #欣喜',
-		'1: 查看给蠢秃秃的特别消息',
-		'2: 剑网3 贴吧 今日热门(每晚六点更新)',
-		'3: 我真的适合玩这个鬼职业吗',
-		'4: 漂流瓶(暂未开放，敬请期待)',
-		'5: 小和尚奇侠传(暂未开放，敬请期待)',
-		'6: 入帮/给作者提意见添加更多功能',
-		'7: 本次开机统计/我的状态']
+		'【1】: 查看给蠢秃秃的特别消息 ',
+		'【2】: 剑网3 贴吧 今日热门(每晚六点更新) '
+		'【3】: 我真的适合玩这个鬼职业吗 '
+		'【4】: 漂流瓶 '
+		'【5】: 瞎比唠唠嗑 '
+		'【6】: 入帮/给作者提意见添加更多功能 '
+		'【7】: 本次开机统计/我的状态 ']
+		if get_usertype(player_id).find('VIP')>=0:
+			strcache += VIPChoice
 		sendlist(player_id,strcache,1,0.1,0.5)
 		PlayerState[player_id] = 2
 	elif state == 1: #非第一次对话，主选单，msg:随机内容
 		strcache = [
 		'嘿嘿嘿~ ' + player_id+'，欢迎回来~ #欣喜',
-		'1: 查看给蠢秃秃的特别消息',
-		'2: 剑网3 贴吧 今日热门(每晚六点更新)',
-		'3: 我真的适合玩这个鬼职业吗',
-		'4: 漂流瓶(暂未开放，敬请期待)',
-		'5: 小和尚奇侠传(暂未开放，敬请期待)',
-		'6: 入帮/给作者提意见添加更多功能',
-		'7: 本次开机统计/我的状态']
+		'【1】: 查看给蠢秃秃的特别消息 ',
+		'【2】: 剑网3 贴吧 今日热门(每晚六点更新) '
+		'【3】: 我真的适合玩这个鬼职业吗 '
+		'【4】: 漂流瓶 '
+		'【5】: 瞎比唠唠嗑 '
+		'【6】: 入帮/给作者提意见添加更多功能 '
+		'【7】: 本次开机统计/我的状态 ']
+		if get_usertype(player_id).find('VIP')>=0:
+			strcache += VIPChoice
 		sendlist(player_id,strcache,1,0.1,0.5)
 		PlayerState[player_id] = 2
 	elif state == 2: # 选择进入不同应用程序 msg:主选单选择
@@ -348,14 +361,19 @@ def response(state,player_id,msg):
 		elif msg=="2":
 			PlayerState[player_id] = 200
 			APP_TIEBA_TOP10(player_id,200,msg)
-		elif (msg=='4')or(msg=='5'):
-			APP_working(player_id)
 		elif msg=="3":
 			PlayerState[player_id] = 100
 			APP_professiontest(player_id,100,msg)
+		elif msg =="4":
+			PlayerState[player_id] = 300
+			PlayerState = core.floater.APP_floater_main(player_id,300,msg,userdata,PlayerState)
+		elif msg=="5":
+			sendstr(player_id,'来吧小伙儿~随便说说吧~我在听着呢！一定注意回复两个汉字【退出】结束该模式~')
+			TalkingMode[player_id] = ""
+			PlayerState[player_id] = 3
 		elif msg=='6':
 			sendstr(player_id,'嘿嘿嘿欢迎加入中恶六级帮会【北京大学】~入帮直接申请就好~')
-			sendstr(player_id,'如果有什么建议，欢迎写信给ID【北京大学】，或者直接在这儿私聊就好。一会儿会自动回到主菜单，我会看到的~蟹蟹大佬！')
+			sendstr(player_id,'如果有什么建议，欢迎写信给ID【北京大学】或者直接在主菜单中选择唠嗑模式。一会儿会自动回到主菜单，我会看到的~蟹蟹大佬！')
 			PlayerState[player_id] = 1
 		elif msg=="7":
 			dnow = datetime.datetime.now()
@@ -365,14 +383,37 @@ def response(state,player_id,msg):
 			strcache = '[ '+get_usertype(player_id)+" 用户 ] " +player_id+" ，您的注册时间为 "+ userdata[player_id]['REGTIME']
 			sendstr(player_id,strcache)
 			PlayerState[player_id] = 1
-		else:
-			sendstr(player_id,'请输入正确的选项！')
-			PlayerState[player_id] = 1
-			response(1,player_id,"")
+		elif msg=='vip1':
+			if get_usertype(player_id).find('VIP')<0:
+				print(userdata[player_id]['VIP_LEVEL'],get_usertype(player_id))
+				sendstr(player_id,'哈哈哈哈蠢这个号不是VIP啦看看是不是登错了！回复【任意键】返回主菜单')
+				PlayerState[player_id] = 1
+			else:
+				PlayerState[player_id] = 400
+				PlayerState = core.app.vip1.APP_vip1core(player_id,400,msg,PlayerState)
+	elif (int(state)>=3)and(int(state)<=5):
+		#唠嗑模式
+		if state==3:
+			TalkingMode[player_id] += msg +"\n"
+			if msg=='退出':
+				record_user(player_id,TalkingMode[player_id])
+				sendstr(player_id,"嘿嘿嘿~灰常感谢~收到啦！#欣喜【任意键】返回主菜单~")
+				PlayerState[player_id] = 1
+				if get_usertype(player_id).find('VIP')>=0:
+					#VIP直接发邮件
+					send.sendmail.send(player_id +" 的唠嗑信息",TalkingMode[player_id])
+				TalkingMode[player_id] = ""
+					
+				
+				
 	elif (int(state)>=100)and(int(state)<200):
 		APP_professiontest(player_id,state,msg)
 	elif (int(state>=200)and(int(state)<300)):
 		APP_TIEBA_TOP10(player_id,state,msg)
+	elif (int(state>=300)and(int(state)<400)):
+		PlayerState = core.floater.APP_floater_main(player_id,state,msg,userdata,PlayerState)
+	elif (int(state>=400)and(int(state)<500)):
+		PlayerState = core.app.vip1.APP_vip1core(player_id,state,msg,PlayerState)
 		
 def dict2d_construct(thedict, key_a, key_b, val):
   if key_a in thedict:
